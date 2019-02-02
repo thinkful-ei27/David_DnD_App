@@ -1,0 +1,50 @@
+Character document schema:
+Name, Class, Race, (STR/DEX/CON/INT/WIS/CHA)
+Start with backend db
+Character Schema {
+
+}
+
+Front end stateRedux
+React-Redux Store/State: 
+Array of objects each object has: [Name, Class, Race, (STR/DEX/CON/INT/WIS/CHA)]
+Dex Modifier:
+Const Modifier:
+Int Modifier:
+
+Wis Modifier:
+
+Char Modifier:
+
+Str Modifier:
+
+Race Dex Modifier:
+
+Race Const Modifier:
+
+Race Int Modifier:
+
+Race Wis Modifier:
+
+Race Char Modifier:
+
+Race Str Modifier:
+
+Api between front end and backend
+-----------------------------------------------------------------------------
+Libraries I need to import for front-end:
+react
+react-dom
+react-router-dom
+react-router
+react-redux
+redux
+redux-thunk
+-----------------------------------------------------------------------------
+Libraries I need to import for back-end:
+bcryptjs
+dotenv
+express
+jsonwebtoken
+mongoose
+morgan

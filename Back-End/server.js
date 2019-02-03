@@ -14,7 +14,7 @@ app.use((req, res, next) => {
   next(err);
 });
 
-// Custom Error Handler
+
 app.use((err, req, res, next) => {
   if (err.status) {
     const errBody = Object.assign({}, err, { message: err.message });
@@ -25,7 +25,7 @@ app.use((err, req, res, next) => {
 });
 
 if (require.main === module) {
-  // Connect to DB and Listen for incoming connections
+
   mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useCreateIndex : true })
     .then(instance => {
       const conn = instance.connections[0];

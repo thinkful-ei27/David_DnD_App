@@ -1,8 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const Character = require('../models/character');
 const router = express.Router();
-
+const jsonParser = bodyParser.json();
 
 router.get('/', (req, res, next) => {
   Character.find()
@@ -32,42 +33,66 @@ router.get('/:name', (req, res, next) => {
     });
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', jsonParser, (req, res, next) => {
   console.log("Post made it")
-  const name = req.body.name;
-  console.log("second post made it")
-  const characterClass = req.body.characterClass;
-  const race = req.body.race;
-  const Strength = req.body.Strength;
-  const Dexterity = req.body.Dexterity;
-  const Constitution = req.body.Constitution;
-  const Intelligence = req.body.Intelligence;
-  const Wisdom = req.body.Wisdom;
-  const Charisma = req.body.Charisma;
+ 
+const { name, characterClass, race, level, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma} = req.body;
+const insertObject = {
+  name,
+  characterClass,
+  race,
+  level,
+  Strength,
+  Dexterity,
+  Constitution,
+  Intelligence,
+  Wisdom,
+  Charisma
+}
+console.log(insertObject)
 
-
-  Character.create({
-    name,
-    characterClass,
-    race,
-    Strength,
-    Dexterity,
-    Constitution,
-    Intelligence,
-    Wisdom,
-    Charisma
-  })
+return Character.create(insertObject)
 .then(result => {
-  console.log("made it here")
-    res.location(`${req.originalUrl}/${result.id}`).status(201).json(result);
+  return res.status(201).json(result);
   })
   .catch(err => {
-    if (err.code === 11000) {
-      err = new Error('Chilll');
-      err.status = 400;
-    }
     next(err);
   });
 });
+
+router.put('/:name', jsonParser, (req, res, next) => {
+  const { name } = req.params;
+  console.log("Post made it")
+  const toUpdate = {};
+  const updateableFields = ["characterClass", "race", "level", "Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
+  updateableFields.forEach(field => {
+    if (field in req.body) {
+      toUpdate[field] = req.body[field];
+    }
+
+return Character.findOneAndUpdate({name}, toUpdate, { new: true })
+.then(result => {
+  console.log(result)
+  return res.status(201).json(result);
+  })
+  .catch(err => {
+    next(err);
+  });
+});
+
+
+})
+
+router.delete('/:name', (req, res, next) => {
+  const { name } = req.params;
+
+  Character.findOneAndDelete({name})
+  .then(() => {
+    res.sendStatus(204);
+  })
+  .catch(err => {
+    next(err);
+  })
+})
 
 module.exports = router;

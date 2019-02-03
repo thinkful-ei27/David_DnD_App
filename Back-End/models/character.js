@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 
 const characterSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: true, unique: true },
   characterClass :{ type: String, required: true },
   race: { type: String, required: true },
+  level: {type: Number, required: true, default: 1},
   Strength: {type: Number, required: true},
   Dexterity: {type: Number, required: true},
-  Consitution: {type: Number, required: true},
+  Constitution: {type: Number, required: true},
   Intelligence: {type: Number, required: true},
   Wisdom: {type: Number, required: true},
   Charisma: {type: Number, required: true

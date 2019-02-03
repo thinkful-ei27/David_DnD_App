@@ -48,3 +48,8 @@ express
 jsonwebtoken
 mongoose
 morgan
+
+Add experiance for the Character objects
+*add display for exp points to next lvl
+*Add skill functionality
+*Add calculate

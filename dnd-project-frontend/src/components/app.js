@@ -9,6 +9,7 @@ class App extends Component {
     return (
    <div>
      <CharacterCreator/>
+     <CharacterCards/>
    </div>
     );
   }

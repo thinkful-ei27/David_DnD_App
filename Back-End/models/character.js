@@ -11,10 +11,10 @@ const characterSchema = new mongoose.Schema({
   Intelligence: {type: Number, required: true},
   Wisdom: {type: Number, required: true},
   Charisma: {type: Number, required: true
+  
 }
 });
  
-characterSchema.set('timestamps', true);
 
 characterSchema.set('toJSON', {
   virtuals: true,

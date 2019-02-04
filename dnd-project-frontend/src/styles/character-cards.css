@@ -1,0 +1,30 @@
+.character-card-display {
+  width: 570px;
+  height: 210px;
+  background-color: rgba(90, 90, 90, 0.548);
+  border-radius: 10px 10px 10px 10px;
+  display: flex;
+  position: relative;
+  top: 125px;
+  margin: auto;
+  
+  
+}
+
+.scroll-left-box {
+  width: 60px;
+  height: 210px;
+  border-radius: 10px 0px 0px 10px;
+  background-color: gold;
+}
+
+.scroll-right-box {
+  width: 60px;
+  height: 210px;
+  border-radius: 0px 10px 10px 0px;
+  background-color: gold;
+}
+
+.mouseInside {
+  background-color: rgba(225, 0, 255, 0.459);
+}

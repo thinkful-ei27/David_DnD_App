@@ -4,6 +4,7 @@ import {SubmissionError} from 'redux-form';
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 import {saveAuthToken, clearAuthToken} from '../local-storage';
+import {getCharactersFromDatabase} from './dashboard'
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
@@ -40,6 +41,7 @@ const storeAuthInfo = (authToken, dispatch) => {
     dispatch(setAuthToken(authToken));
     dispatch(authSuccess(decodedToken.user));
     saveAuthToken(authToken);
+    dispatch(getCharactersFromDatabase(authToken));
 };
 
 export const login = (username, password) => dispatch => {
@@ -59,7 +61,9 @@ export const login = (username, password) => dispatch => {
             // errors which follow a consistent format
             .then(res => normalizeResponseErrors(res))
             .then(res => res.json())
-            .then(({authToken}) => storeAuthInfo(authToken, dispatch))
+            .then(({authToken}) => {
+                storeAuthInfo(authToken, dispatch);
+            })
             .catch(err => {
                 const {code} = err;
                 const message =

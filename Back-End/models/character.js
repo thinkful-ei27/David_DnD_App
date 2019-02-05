@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const characterSchema = new mongoose.Schema({
-  name: { type: String, required: true, unique: true },
+  name: { type: String, required: true},
   characterClass :{ type: String, required: true },
   race: { type: String, required: true },
   level: {type: Number, required: true, default: 1},
@@ -11,10 +11,10 @@ const characterSchema = new mongoose.Schema({
   Intelligence: {type: Number, required: true},
   Wisdom: {type: Number, required: true},
   Charisma: {type: Number, required: true},
-  username: { type: String, ref: 'User', required: true}
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 });
  
-
+characterSchema.index({ name: 1, userId: 1 }, { unique: true })
 characterSchema.set('toJSON', {
   virtuals: true,
   transform: (doc, result) => {

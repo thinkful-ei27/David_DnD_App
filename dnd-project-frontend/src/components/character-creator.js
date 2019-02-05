@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Field, reduxForm } from 'redux-form'
 import '../styles/character-creator.css'
+import {createCharacter} from '../actions/dashboard';
 
 class CharacterCreator extends Component {
   onSubmit(values) {
@@ -24,20 +25,8 @@ class CharacterCreator extends Component {
       Wisdom,
       Charisma
     }
-    const url = 'http://localhost:8080/characters/';
-    return fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(insertObject),
-      headers: { 'Content-Type': 'application/json' }
-    }).then(res => {
-      if (!res.ok) {
-        return res.json().then(err => Promise.reject(err))
-      }
-      return res.json().then(data => console.log(data))
-    })
-    .catch(err => {
-      console.log(err.message)
-    })
+    console.log("onSubmit values are: ", insertObject)
+    return this.props.dispatch(createCharacter(insertObject))
   } 
   
   getRoll() {

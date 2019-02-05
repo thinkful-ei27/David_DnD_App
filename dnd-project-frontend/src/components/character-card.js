@@ -5,35 +5,25 @@ import '../styles/character-card.css'
 class CharacterCard extends Component {
   
   render() {
-    const hardCodedCharacter = {
-      name: "Hard Code",
-      characterClass : "barbarian",
-      race : "human",
-      level: 2,
-      Strength: 1,
-      Dexterity: 2,
-      Constitution: 3,
-      Intelligence: 4,
-      Wisdom:12,
-      Charisma:14
-    }
+
     return (
       <div className="character-card-border">
         <div className="character-card">
-          Name: {hardCodedCharacter.name} <br></br>
-          Class : {hardCodedCharacter.characterClass} <br></br>
-          Race : {hardCodedCharacter.race} <br></br>
-          Level: {hardCodedCharacter.level} <br></br>
-          Strength: {hardCodedCharacter.Strength} <br></br>
-          Dexterity: {hardCodedCharacter.Dexterity} <br></br>
-          Constitution: {hardCodedCharacter.Charisma} <br></br>
-          Intelligence: {hardCodedCharacter.Intelligence} <br></br>
-          Wisdom: {hardCodedCharacter.Wisdom} <br></br>
-          Charisma:{hardCodedCharacter.Charisma} <br></br>
+          Name: {this.props.character.name} <br></br>
+          Class : {this.props.character.characterClass} <br></br>
+          Race : {this.props.character.race} <br></br>
+          Level: {this.props.character.level} <br></br>
+          Strength: {this.props.character.Strength} <br></br>
+          Dexterity: {this.props.character.Dexterity} <br></br>
+          Constitution: {this.props.character.Charisma} <br></br>
+          Intelligence: {this.props.character.Intelligence} <br></br>
+          Wisdom: {this.props.character.Wisdom} <br></br>
+          Charisma:{this.props.character.Charisma} <br></br>
         </div>
       </div>
     );
   }
 }
+
 
 export default CharacterCard;

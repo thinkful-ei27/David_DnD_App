@@ -6,7 +6,8 @@ const router = express.Router();
 const jsonParser = bodyParser.json();
 
 router.get('/', (req, res, next) => {
-  Character.find()
+  const userId = req.user.id;
+  Character.find({userId})
   .then(results => {
     console.log(results)
     res.json(results);
@@ -19,8 +20,9 @@ router.get('/', (req, res, next) => {
 
 router.get('/:name', (req, res, next) => {
   const { name } = req.params;
+  const userId = req.user.id;
 
-  Character.findOne({ name })
+  Character.findOne({ name, userId})
     .then(result => {
       if (result) {
         res.json(result);
@@ -35,7 +37,8 @@ router.get('/:name', (req, res, next) => {
 
 router.post('/', jsonParser, (req, res, next) => {
   console.log("Post made it")
- 
+ console.log(`This is req.user`, req.user )
+ console.log("Body is: ", req.body)
 const { name, characterClass, race, level, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma} = req.body;
 const insertObject = {
   name,
@@ -47,7 +50,8 @@ const insertObject = {
   Constitution,
   Intelligence,
   Wisdom,
-  Charisma
+  Charisma,
+  userId: req.user.id
 }
 console.log(insertObject)
 
@@ -62,6 +66,7 @@ return Character.create(insertObject)
 
 router.put('/:name', jsonParser, (req, res, next) => {
   const { name } = req.params;
+  const userId = req.user.id;
   console.log("Post made it")
   const toUpdate = {};
   const updateableFields = ["characterClass", "race", "level", "Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
@@ -70,7 +75,7 @@ router.put('/:name', jsonParser, (req, res, next) => {
       toUpdate[field] = req.body[field];
     }
 
-return Character.findOneAndUpdate({name}, toUpdate, { new: true })
+return Character.findOneAndUpdate({name, userId}, toUpdate, { new: true })
 .then(result => {
   console.log(result)
   return res.status(201).json(result);
@@ -85,8 +90,8 @@ return Character.findOneAndUpdate({name}, toUpdate, { new: true })
 
 router.delete('/:name', (req, res, next) => {
   const { name } = req.params;
-
-  Character.findOneAndDelete({name})
+  const userId = req.user.id
+  Character.findOneAndDelete({name, userId})
   .then(() => {
     res.sendStatus(204);
   })

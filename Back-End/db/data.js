@@ -9,8 +9,7 @@ const characters = [
     "Constitution": "10",
     "Intelligence": "10",
     "Wisdom": "10",
-    "Charisma": "10",
-    "username": "NewUser"
+    "Charisma": "10"
   },
   {
     "name": "Test Character Two",
@@ -22,8 +21,7 @@ const characters = [
     "Constitution": "9",
     "Intelligence": "16",
     "Wisdom": "12",
-    "Charisma": "13",
-    "username": "NewUser"
+    "Charisma": "13"
   }
 ]
 const users = [

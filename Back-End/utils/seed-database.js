@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 
-const { MONGODB_URI } = require('../config');
+const { DATABASE_URL } = require('../config');
 
-const Character = require('../models/character')
+const Character = require('../models/character');
+const User = require('../models/user')
 
-const { characters } = require('../db/data');
+const { characters, users} = require('../db/data');
 
-console.log(`Connecting to mongodb at ${MONGODB_URI}`);
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useCreateIndex : true })
+console.log(`Connecting to mongodb at ${DATABASE_URL}`);
+mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useCreateIndex : true })
   .then(() => {
     console.info('Deleting Data...');
     return Promise.all([
@@ -17,7 +18,7 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useCreateIndex : true })
   .then(() => {
     console.info('Seeding Database...');
     return Promise.all([
-      Character.insertMany(characters),
+      Character.insertMany(characters)
     ]);
   })
   .then(results => {

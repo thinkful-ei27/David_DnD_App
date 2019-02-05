@@ -10,9 +10,8 @@ const characterSchema = new mongoose.Schema({
   Constitution: {type: Number, required: true},
   Intelligence: {type: Number, required: true},
   Wisdom: {type: Number, required: true},
-  Charisma: {type: Number, required: true
-  
-}
+  Charisma: {type: Number, required: true},
+  username: { type: String, ref: 'User', required: true}
 });
  
 

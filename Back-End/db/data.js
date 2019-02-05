@@ -9,8 +9,8 @@ const characters = [
     "Constitution": "10",
     "Intelligence": "10",
     "Wisdom": "10",
-    "Charisma": "10"
-    
+    "Charisma": "10",
+    "username": "NewUser"
   },
   {
     "name": "Test Character Two",
@@ -22,8 +22,26 @@ const characters = [
     "Constitution": "9",
     "Intelligence": "16",
     "Wisdom": "12",
-    "Charisma": "13"
+    "Charisma": "13",
+    "username": "NewUser"
   }
 ]
+const users = [
+  {
+    "username": "NewUser",
+    "password": "password123",
+    "firstName" : "David",
+    "lastName" : "Johnson"
+  },
+  {
+    "username": "CoolUser",
+    "password": "password123",
+    "firstName" : "No",
+    "lastName" : "One"
+  }
 
-  module.exports = { characters };
+]
+
+
+
+  module.exports = { characters, users };
